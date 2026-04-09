@@ -206,6 +206,12 @@ nav{
 .comp-desc{font-size:13px;color:var(--gray-500);line-height:1.6}
 .comp-props{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
 .prop-pill{font-family:var(--mono);font-size:10px;color:var(--gray-600);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:2px 8px;border-radius:4px}
+.comp-links{display:flex;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07)}
+.comp-link{font-size:11px;font-weight:600;padding:5px 12px;border-radius:6px;text-decoration:none;transition:all .18s;border:1px solid;display:inline-flex;align-items:center}
+.comp-link-example{color:var(--accent-light);border-color:var(--accent-border);background:var(--accent-soft)}
+.comp-link-example:hover{background:rgba(124,109,250,.15);border-color:rgba(124,109,250,.4)}
+.comp-link-source{color:var(--gray-400);border-color:rgba(255,255,255,0.1);background:transparent}
+.comp-link-source:hover{color:var(--white);border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.05)}
 
 /* ── HOOKS PAGE ── */
 .hooks-hero{padding:100px 24px 60px;text-align:center}
@@ -771,6 +777,7 @@ function renderComponents(filter='all'){
   const grid = document.getElementById('comp-grid');
   const items = filter==='all' ? COMPONENTS : COMPONENTS.filter(c=>c.cat===filter);
   const tagClass = {form:'tag-form',overlay:'tag-overlay',navigation:'tag-nav',data:'tag-data',layout:'tag-layout',feedback:'tag-feedback'};
+  const BASE = 'https://github.com/suftnetrepo/fluent-style-nexts/tree/main';
   grid.innerHTML = items.map(c=>`
     <div class="comp-card">
       <div class="comp-tag-row">
@@ -780,6 +787,10 @@ function renderComponents(filter='all'){
       <div class="comp-name">${c.name}</div>
       <div class="comp-desc">${c.desc}</div>
       <div class="comp-props">${c.props.map(p=>`<span class="prop-pill">${p}</span>`).join('')}</div>
+      <div class="comp-links">
+        <a class="comp-link comp-link-example" href="${BASE}/example/app/${c.name}" target="_blank">View Example →</a>
+        <a class="comp-link comp-link-source" href="${BASE}/src/${c.name}" target="_blank">Source</a>
+      </div>
     </div>`).join('');
 }
 
